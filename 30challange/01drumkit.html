@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+        body{
+            margin:0px;
+            text-align:center;
+
+        }
+
+
+
+
+
+
+        #container{
+            display:flex;
+            flex-direction:column;
+            border:3px solid grey;
+            width:50%;
+            margin-left:25%;
+            margin-top:50px;
+        }
+        #row1, #row2, #row3{
+            display:flex;
+            flex-direction:row;
+            
+            margin:10px 0px 10px 0px;
+            
+        }
+        #row1 > div , #row2 > div, #row3 > div {
+            flex-grow:1;
+            border:1px solid grey;
+            padding-top:30px;
+            margin:0px 10px 0px 10px;
+            
+        }
+        #snare{
+            flex-grow:2;
+        }
+
+    </style>
+
+
+
+
+
+
+</head>
+<body>
+
+    <div id="container">
+        <div id="row1">
+                <div data-key:81 id="tom1" class="pads">
+                    <kbd>Q</kbd>
+                    <p>
+                        tom1
+                    </p>
+                </div>
+                <div data-key:87 id="tom2" class="pads">
+                    <kbd>W</kbd>
+                    <p>
+                        tom2
+                    </p>
+                </div>
+                <div data-key:81 id="tom3" class="pads">
+                    <kbd>E</kbd>
+                     <p>
+                        tom3
+                    </p>
+                </div>
+                <div data-key:81 id="tom4" class="pads">
+                    <kbd>R</kbd>
+                    <p>
+                            tom4
+                    </p>
+                </div>
+               
+                
+                <div data-key:69 id="ride" class="pads">
+                    <kbd>E</kbd>
+                    <p>
+                        ride
+                    </p>
+                </div>
+        </div>
+        <div id="row2">
+                <div data-key:69 id="snare" class="pads">
+                        <kbd>D</kbd>
+                        <p>
+                            snare
+                        </p>
+                </div>
+                <div data-key:69 id="closedHihat" class="pads">
+                        <kbd>J</kbd>
+                        <p>
+                            closed hihat
+                        </p>
+                </div>
+                <div data-key:69 id="openHihat" class="pads">
+                        <kbd>K</kbd>
+                        <p>
+                            open hihat
+                        </p>
+                </div>
+        </div>
+
+        <div id="row3">
+            <div id="kick">
+                <kbd>SPACE</kbd>
+                <p>
+                    kick
+                </p>
+            </div>
+            
+        </div>
+        
+    
+    
+    
+    
+    </div>
+
+    
+</body>
+</html>
