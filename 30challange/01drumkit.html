@@ -8,6 +8,9 @@
 
     <style>
 
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+
         body{
             margin:0px;
             text-align:center;
@@ -22,10 +25,14 @@
         #container{
             display:flex;
             flex-direction:column;
-            border:3px solid grey;
+            border-style: none solid solid none;
+            border-color:black;
+            border-width:5px;
+            background-color:grey;
             width:50%;
             margin-left:25%;
             margin-top:50px;
+            border-radius:10px;
         }
         #row1, #row2, #row3{
             display:flex;
@@ -33,17 +40,26 @@
             
             margin:10px 0px 10px 0px;
             
+            
         }
         #row1 > div , #row2 > div, #row3 > div {
             flex-grow:1;
-            border:1px solid grey;
+            background-color:rgb(50, 50, 50);
+            color:white;
             padding-top:30px;
             margin:0px 10px 0px 10px;
+            border-radius:10px;
+            border-style: none solid solid none;
+            border-color:black;
+            border-width:5px;
+            font-family:'Bangers', cursive;
             
         }
-        #snare{
-            flex-grow:2;
+        kbd{
+            font-family:'Bangers', cursive;
+            font-size:30px;
         }
+      
 
     </style>
 
@@ -57,53 +73,48 @@
 
     <div id="container">
         <div id="row1">
-                <div data-key:81 id="tom1" class="pads">
+                <div data-key=81 id="tom1" class="pads">
                     <kbd>Q</kbd>
                     <p>
                         tom1
                     </p>
                 </div>
-                <div data-key:87 id="tom2" class="pads">
+                <div data-key=87 id="tom2" class="pads">
                     <kbd>W</kbd>
                     <p>
                         tom2
                     </p>
                 </div>
-                <div data-key:81 id="tom3" class="pads">
+                <div data-key=69 id="tom3" class="pads">
                     <kbd>E</kbd>
                      <p>
                         tom3
                     </p>
                 </div>
-                <div data-key:81 id="tom4" class="pads">
-                    <kbd>R</kbd>
-                    <p>
-                            tom4
-                    </p>
-                </div>
+
                
                 
-                <div data-key:69 id="ride" class="pads">
-                    <kbd>E</kbd>
+                <div data-key=85 id="ride" class="pads">
+                    <kbd>U</kbd>
                     <p>
                         ride
                     </p>
                 </div>
         </div>
         <div id="row2">
-                <div data-key:69 id="snare" class="pads">
+                <div data-key=68 id="snare" class="pads">
                         <kbd>D</kbd>
                         <p>
                             snare
                         </p>
                 </div>
-                <div data-key:69 id="closedHihat" class="pads">
+                <div data-key=74 id="closedHihat" class="pads">
                         <kbd>J</kbd>
                         <p>
                             closed hihat
                         </p>
                 </div>
-                <div data-key:69 id="openHihat" class="pads">
+                <div data-key=75 id="openHihat" class="pads">
                         <kbd>K</kbd>
                         <p>
                             open hihat
@@ -112,9 +123,9 @@
         </div>
 
         <div id="row3">
-            <div id="kick">
+            <div data-key=32 id="kick">
                 <kbd>SPACE</kbd>
-                <p>
+                <p><audio data-key=81 src="./01drumsounds/tom1.wav"></audio>
                     kick
                 </p>
             </div>
@@ -126,7 +137,40 @@
     
     
     </div>
+    <audio data-key=81 src="./01drumsounds/tom1.wav"></audio>
+    <audio data-key=87 src="./01drumsounds/tom2.wav"></audio>
+    <audio data-key=69 src="./01drumsounds/tom3.wav"></audio>
+    <audio data-key=85 src="./01drumsounds/ride.wav"></audio>
+    <audio data-key=68 src="./01drumsounds/snare.wav"></audio>
+    <audio data-key=74 src="./01drumsounds/closed hihat.wav"></audio>
+    <audio data-key=75 src="./01drumsounds/open hihat.wav"></audio>
+    <audio data-key=32 src="./01drumsounds/kick.wav"></audio>
 
+    <script>
+        window.addEventListener('keydown', function(e){
+            console.log(e.keyCode);
+            
+
+
+
+
+            });
+            window.addEventListener('keyup', function(e){
+            console.log(e.keyCode);
+
+            
+
+
+
+
+            });
+
+        
+
+
+
+
+    </script>
     
 </body>
 </html>
