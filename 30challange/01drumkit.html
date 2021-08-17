@@ -33,6 +33,7 @@
             margin-left:25%;
             margin-top:50px;
             border-radius:10px;
+            height:405px;
         }
         #row1, #row2, #row3{
             display:flex;
@@ -123,9 +124,9 @@
         </div>
 
         <div id="row3">
-            <div data-key=32 id="kick">
+            <div data-key=32 id="kick" class="pads">
                 <kbd>SPACE</kbd>
-                <p><audio data-key=81 src="./01drumsounds/tom1.wav"></audio>
+                <p>
                     kick
                 </p>
             </div>
@@ -148,16 +149,16 @@
 
     <script>
         window.addEventListener('keydown', function(e){
-            console.log(e.keyCode);
+            hit(e.keyCode);
+            animateDown(e.keyCode);
+
             
-
-
 
 
             });
             window.addEventListener('keyup', function(e){
-            console.log(e.keyCode);
-
+            
+            animateUp(e.keyCode);
             
 
 
@@ -165,6 +166,48 @@
 
             });
 
+
+            function hit(code)
+            {
+                var buttons=document.querySelectorAll(".pads" );
+                var i=0;
+                var button
+                for(i=0;i<buttons.length;i++)
+                {
+                    if(buttons[i].dataset.key==code) button=buttons[i];
+                }
+                   
+                
+            }
+            function animateDown(code)
+            {
+                var buttons=document.querySelectorAll(".pads" );
+                var i=0;
+                var button
+                for(i=0;i<buttons.length;i++)
+                {
+                    if(buttons[i].dataset.key==code) button=buttons[i];
+                }
+                if(!button) return;
+                 
+                button.style.border="none";
+                button.style.transform="translate(5px, 5px)";
+                button.style.margin="0px 15px 0px 10px";
+            }
+            function animateUp(code)
+            {
+                var buttons=document.querySelectorAll(".pads" );
+                var i=0;
+                var button
+                for(i=0;i<buttons.length;i++)
+                {
+                    if(buttons[i].dataset.key==code) button=buttons[i];
+                }
+                if(!button) return;
+                button.style.border="";
+                button.style.transform="translate(0px, 0px)";
+                button.style.margin="0px 10px 0px 10px";
+            }
         
 
 
