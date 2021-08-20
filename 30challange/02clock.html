@@ -6,8 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap');
         body{
             background-color:black;
+        }
+        #clockbody{
+
+            border:1px solid white;
+            width:1000px;
+            margin:auto;
+            margin-top:250px;
+            display:flex;
+            flex-direction:row;
+        }
+
+
+        .digit{
+            border:1px solid powderblue;    
+            flex-grow:1;
+            font-family:"Urbanist", sans-serif;
+            color:coral;
+            font-size:160px;
+            text-align:center;
+
         }
 
 
@@ -19,6 +40,32 @@
     </style>
 </head>
 <body>
+    <div id="clockbody">
+        <div class="digit" id="hour_10">
+            3
+        </div>
+        <div class="digit" id="hour_1">
+            3
+        </div>    
+        <div class="digit">
+            :
+        </div>    
+        <div class="digit" id="minute_10">
+            3
+        </div>
+        <div class="digit" id="minute_1">
+            3
+        </div>    
+        <div class="digit">
+            :
+        </div>   
+        <div class="digit" id="second_10">
+            3
+        </div>
+        <div class="digit" id="second_1">
+            3
+        </div>   
+    </div>
     
 </body>
 </html>
