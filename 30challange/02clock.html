@@ -25,9 +25,10 @@
             border:1px solid powderblue;    
             flex-grow:1;
             font-family:"Urbanist", sans-serif;
-            color:rgb(255,278,95);
+            
             font-size:160px;
             text-align:center;
+            color:rgba(255, 278, 95);
 
         }
 
@@ -75,11 +76,14 @@
             let i;
             for(i=0;i<digits.length;i++){
                 brightness=Math.random();
-                console.log(digits[i].style);
-                digits[i].style.filter="rgba(255, 278, 95"+brightness.toString()+");";
+                let colorcode="rgba(255, 278, 95,"+brightness+")";
+                console.log(colorcode);
+                digits[i].style.color=colorcode;
+
             }
 
         }
+        
     </script>
     
 </body>
