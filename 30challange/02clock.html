@@ -25,7 +25,7 @@
             border:1px solid powderblue;    
             flex-grow:1;
             font-family:"Urbanist", sans-serif;
-            color:coral;
+            color:rgb(255,278,95);
             font-size:160px;
             text-align:center;
 
@@ -65,10 +65,21 @@
         <div class="digit" id="second_1">
             3
         </div>   
+        
     </div>
-
+    <input type="button" onclick="glitch();">
     <script>
+        function glitch(){
+            let brightness;
+            let digits=document.querySelectorAll(".digit");
+            let i;
+            for(i=0;i<digits.length;i++){
+                brightness=Math.random();
+                console.log(digits[i].style);
+                digits[i].style.filter="rgba(255, 278, 95"+brightness.toString()+");";
+            }
 
+        }
     </script>
     
 </body>
