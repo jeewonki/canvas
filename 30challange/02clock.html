@@ -28,10 +28,14 @@
             
             font-size:160px;
             text-align:center;
-            color:rgba(255, 166, 101);
+            color:rgba(235, 212, 124);
             width:160px;
+            text-shadow: 0px 0px 20px rgba(255, 166, 101),
+                         10px 10px 20px rgba(254, 93, 64),
+                         10px -10px 20px rgba(254, 93, 64),
+                         -10px 10px 20px rgba(254, 93, 64),
+                         -10px -10px 20px rgba(254, 93, 64);
             
-
         }
 
         #analogclock{
@@ -55,6 +59,35 @@
             position:absolute;
             margin-top:148px;
             margin-left:30px;
+            transform-origin:100%;
+            transition: all 200ms cubic-bezier(0.445, 0.085, 0.705, 1.570);
+            transition-timing-function: cubic-bezier(0.445, 0.085, 0.705, 1.570);
+        }
+        #hourhand{
+            width:80px;
+            height:4px;
+            background-color: rgba(255, 166, 101);
+
+
+            position:absolute;
+            margin-top:148px;
+            margin-left:70px;
+            transform-origin:100%;
+            transition: all 200ms cubic-bezier(0.445, 0.085, 0.705, 1.570);
+            transition-timing-function: cubic-bezier(0.445, 0.085, 0.705, 1.570);
+        }
+        #secondhand{
+            width:130px;
+            height:2px;
+            background-color: rgba(255, 166, 101);
+
+
+            position:absolute;
+            margin-top:149px;
+            margin-left:20px;
+            transform-origin:100%;
+            transition: all 200ms cubic-bezier(0.445, 0.085, 0.705, 1.570);
+            transition-timing-function: cubic-bezier(0.445, 0.085, 0.705, 1.570);
         }
 
 
@@ -113,7 +146,9 @@
     <script>
 
         let digits=document.querySelectorAll(".digit");
-
+        let mh=document.getElementById("minutehand");
+        let sh=document.getElementById("secondhand");
+        let hh=document.getElementById("hourhand");
 
         function setTime(){
             let now=new Date();
@@ -126,6 +161,23 @@
             digits[4].innerText=minute%10;
             digits[6].innerText=parseInt((second/10));
             digits[7].innerText=second%10;
+
+
+            if(second==0) sh.style.transition="none";
+            else sh.style.transition="all 200ms cubic-bezier(0.445, 0.085, 0.705, 1.570)"
+
+            if(minute==0) mh.style.transition="none";
+            else mh.style.transition="all 200ms cubic-bezier(0.445, 0.085, 0.705, 1.570)"
+
+
+            if(hour==0) hh.style.transition="none";
+            else hh.style.transition="all 200ms cubic-bezier(0.445, 0.085, 0.705, 1.570)"
+
+            mh.style.transform="rotate("+((minute)*6+90)+"deg)";
+            sh.style.transform="rotate("+((second)*6+90)+"deg)";
+            hh.style.transform="rotate("+((hour)*6+90)+"deg)";
+
+
         }
 
 
@@ -135,7 +187,7 @@
             let i;
             for(i=0;i<digits.length;i++){
                 brightness=Math.random()/4+0.75;
-                let colorcode="rgba(255, 166, 101,"+brightness+")";
+                let colorcode="rgba(235, 212, 124,"+brightness+")";
                 
                 digits[i].style.color=colorcode;
 
