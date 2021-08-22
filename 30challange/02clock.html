@@ -12,7 +12,7 @@
         }
         #clockbody{
 
-            border:1px solid white;
+            
             width:1000px;
             margin:auto;
             margin-top:250px;
@@ -22,13 +22,14 @@
 
 
         .digit{
-            border:1px solid powderblue;    
+               
             flex-grow:1;
             font-family:"Urbanist", sans-serif;
             
             font-size:160px;
             text-align:center;
-            color:rgba(255, 278, 95);
+            color:rgba(255, 166, 101);
+            width:160px;
 
         }
 
@@ -43,50 +44,67 @@
 <body>
     <div id="clockbody">
         <div class="digit" id="hour_10">
-            3
+            0
         </div>
         <div class="digit" id="hour_1">
-            3
+            0
         </div>    
         <div class="digit">
             :
         </div>    
         <div class="digit" id="minute_10">
-            3
+            0
         </div>
         <div class="digit" id="minute_1">
-            3
+            0
         </div>    
         <div class="digit">
             :
         </div>   
         <div class="digit" id="second_10">
-            3
+            0
         </div>
         <div class="digit" id="second_1">
-            3
+            0
         </div>   
         
     </div>
     
     <script>
+
+        let digits=document.querySelectorAll(".digit");
+
+
+        function setTime(){
+            let now=new Date();
+            let second=now.getSeconds();
+            let minute=now.getMinutes();
+            let hour=now.getHours();
+            digits[0].innerText=parseInt((hour/10),10);
+            digits[1].innerText=hour%10;
+            digits[3].innerText=parseInt((minute/10),10);
+            digits[4].innerText=minute%10;
+            digits[6].innerText=parseInt((second/10));
+            digits[7].innerText=second%10;
+        }
+
+
         function glitch(){
             let brightness;
-            let digits=document.querySelectorAll(".digit");
+            
             let i;
             for(i=0;i<digits.length;i++){
-                brightness=Math.random();
-                let colorcode="rgba(255, 278, 95,"+brightness+")";
-                console.log(colorcode);
+                brightness=Math.random()/2+0.5;
+                let colorcode="rgba(255, 166, 101,"+brightness+")";
+                
                 digits[i].style.color=colorcode;
 
             }
 
         }
-        while(true){
-            
-            setTimeout(glitch(), 1000);
-        }
+        setInterval(setTime, 1000);
+        setInterval(glitch, 25);
+        
 
     </script>
     
