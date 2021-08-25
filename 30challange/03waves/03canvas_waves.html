@@ -23,10 +23,45 @@
     
     </style>
     
+    
 
 </head>
 <body>
-        <script type="module" src="./main.js"></script>
+      
+    
+        <script>
+                function create(id, parent, width, height){
+                    let divWrapper=document.createElement('div');
+                    let canvasElem=document.createElement('canvas');
+                    
+            
+                    parent.appendChild(divWrapper);
+                    divWrapper.appendChild(canvasElem);
+            
+            
+                }
+
+                class Point{
+                    constructor(x, y)
+                    {
+                        this.x=x;
+                        this.y=y;
+                        
+                    }
+
+
+
+
+                }
+
+            
+                create('newcanvas',document.body, 1024, 768);
+                
+                
+                
+                
+                
+                </script>
     
 </body>
 </html>
