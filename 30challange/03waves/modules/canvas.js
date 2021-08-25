@@ -1,4 +1,4 @@
-function create(id, parent, width, height){
+export function create(id, parent, width, height){
     let divWrapper=document.createElement('div');
     let canvasElem=document.createElement('canvas');
 
