@@ -93,12 +93,10 @@
                     dot3.update();
                     
                     ctx.moveTo(0, 60);
-                    ctx.quadraticCurveTo(dot1.x, dot1.y, (dot1.x+dot2.x)/2, (dot1.y+dot2.y)/2 );
-                    ctx.quadraticCurveTo(dot2.x, dot2.y, (dot2.x+dot3.x)/2, (dot2.y+dot3.y)/2 );
-                    ctx.quadraticCurveTo(dot3.x, dot3.y, (dot3.x+cv.width)/2, (dot3.y+60)/2 );
-                    ctx.lineTo(cv.width, 60);
-                    
-                    
+                    ctx.quadraticCurveTo(dot1.x, dot1.y, 0, 60 );
+                    ctx.quadraticCurveTo(dot2.x, dot2.y, dot1.x, dot1.y);
+                    ctx.quadraticCurveTo( dot3.x, dot3.y, dot2.x, dot2.y);
+                    ctx.quadraticCurveTo(cv.width, 60, dot3.x, dot3.y);
                     ctx.stroke();
 
 
