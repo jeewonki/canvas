@@ -46,11 +46,12 @@
                 }
 
                 class Point{
-                    constructor(x, y, startingtime)
+                    constructor(x, y, startingtime, h)
                     {//y=cos(wt)+bias
                         this.x=x;
                         this.y=y;
                         this.bias=y;
+                        this.h=h;
 
                         this.t=0;
                         this.omega=0.1;
@@ -60,7 +61,7 @@
                     update()
                     {
                         this.t+=1;
-                        this.y=this.bias+Math.cos(this.omega*this.t+this.tBias)*30;
+                        this.y=this.bias+Math.cos(this.omega*this.t+this.tBias)*this.h;
                        
                     }
                     
@@ -75,12 +76,34 @@
                 const cv=create('newcanvas',document.body, 1679, 951);
                 
                 const ctx=cv.getContext('2d');
-               
+
+                let stagewidth=document.body.clientWidth;
+                let stageheight=document.body.clientHeight;
+                cv.width=stagewidth;
+                cv.height=stageheight;
+
+
+
                 
-                ctx.strokeStyle="blue";
-                let dot1=new Point(75, 60, 0);
-                let dot2=new Point(150, 60, 1);
-                let dot3=new Point(225, 60, 2);
+                
+                
+
+                let x=cv.width/4;
+                let y=cv.height/2;
+
+
+                let dot1=new Point(x, y, 0, y/3);
+                let dot2=new Point(2*x, y, 1, y/3);
+                let dot3=new Point(3*x, y, 2, y/3);
+
+
+
+                let dot4=new Point(x, y, 1, y/3);
+                let dot5=new Point(2*x, y, 2, y/3);
+                let dot6=new Point(3*x, y, 3, y/3);
+
+
+
 
                 (function animate(){
                     ctx.clearRect(0, 0, cv.width, cv.height);
@@ -91,15 +114,46 @@
                     dot2.update();
                    
                     dot3.update();
+
+                    ctx.strokeStyle="rgb(0, 255, 255)";
+                    ctx.fillStyle="rgba(0, 255, 255, 0.4)";
                     
-                    ctx.moveTo(0, 60);
+                    ctx.moveTo(0, y);
                     ctx.quadraticCurveTo(dot1.x, dot1.y, (dot1.x+dot2.x)/2, (dot1.y+dot2.y)/2 );
                     ctx.quadraticCurveTo(dot2.x, dot2.y, (dot2.x+dot3.x)/2, (dot2.y+dot3.y)/2 );
-                    ctx.quadraticCurveTo(dot3.x, dot3.y, (dot3.x+cv.width)/2, (dot3.y+60)/2 );
-                    ctx.lineTo(cv.width, 60);
+                    ctx.quadraticCurveTo(dot3.x, dot3.y, (dot3.x+cv.width)/2, (dot3.y+y)/2 );
+                    ctx.lineTo(cv.width, y);
+                    ctx.lineTo(cv.width, cv.height);
+                    ctx.lineTo(0, cv.height);
+                    ctx.lineTo(0, y);
                     
                     
                     ctx.stroke();
+                    ctx.fill();
+
+
+////////////////////////////////////////////////////////////
+                    ctx.beginPath();
+                    dot4.update();
+                    
+                    dot5.update();
+                   
+                    dot6.update();
+
+                    ctx.strokeStyle="rgb(0, 255, 0)";
+                    ctx.fillStyle="rgba(0, 255, 0, 0.4)";
+                    ctx.moveTo(0, y);
+                    ctx.quadraticCurveTo(dot4.x, dot4.y, (dot4.x+dot5.x)/2, (dot4.y+dot5.y)/2 );
+                    ctx.quadraticCurveTo(dot5.x, dot5.y, (dot5.x+dot6.x)/2, (dot5.y+dot6.y)/2 );
+                    ctx.quadraticCurveTo(dot6.x, dot6.y, (dot6.x+cv.width)/2, (dot6.y+y)/2 );
+                    ctx.lineTo(cv.width, y);
+                    ctx.lineTo(cv.width, cv.height);
+                    ctx.lineTo(0, cv.height);
+                    ctx.lineTo(0, y);
+                    
+                    
+                    ctx.stroke();
+                    ctx.fill();
 
 
 
