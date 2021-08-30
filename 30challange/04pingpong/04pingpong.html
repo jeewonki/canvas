@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body{margin:0;}
+        canvas{width:100vw; height:100vh;}
+    </style>
+
+
+    <script>
+        function create(id, parent, width, height){
+                    
+                    let canvasElem=document.createElement('canvas');
+                    
+            
+                    
+                    parent.appendChild(canvasElem);
+                    return canvasElem;
+            
+        }
+
+        function resize(_canvas){
+            _canvas.width=document.body.clientWidth;
+            _canvas.height=document.body.clientHeight;
+        }
+
+
+        function update(balls, ctx){
+            let i=0;
+            
+            for(i=0;i<balls.length;i++){
+                balls[i].x+=balls[i].dx;
+                balls[i].y+=balls[i].dy;
+                balls[i].draw(ctx);
+            }
+
+
+        }
+
+
+
+
+
+
+        class Ball{
+            constructor(x, y, r, color,dx, dy){
+                this.x=x;
+                this.y=y;
+                this.r=r;
+                this.color=color;
+                this.dx=dx;
+                this.dy=dy;
+            }
+
+            draw(ctx){
+
+                ctx.strokeStyle=this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r,0, 2*Math.PI );
+                ctx.stroke();
+
+            }
+
+
+
+
+
+        }
+
+
+
+
+        function App()
+        {
+            let cv=create("mycanvas", document.body, 1024, 768);
+            
+            let ctx=cv.getContext('2d');
+            resize(cv);
+            
+            
+            let balls=Array();
+
+            balls.push(new Ball(cv.width/2, cv.height/2, 50, "green", 1, 0 ));
+            balls.push(new Ball(cv.width/3, cv.height/3, 20, "black", 0, 1 ));
+            
+
+            (function repeatOften(){
+                update(balls, ctx);
+                requestAnimationFrame(repeatOften);
+                }
+            )();
+
+            
+        }
+    
+    
+    
+    </script>
+
+</head>
+<body onload="App()";>
+</body>
+</html>
