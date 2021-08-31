@@ -7,12 +7,21 @@
     <title>Document</title>
 
     <style>
-        body{margin:0;}
+        body{margin:0; background-color:black;}
         canvas{width:100vw; height:100vh;}
+
+        #balls{color:white; text-align:center;  position:fixed; left:50vw;}
+
     </style>
 
 
     <script>
+
+        let c_w;
+        let c_h;
+        let balls=Array();
+        
+
         function create(id, parent, width, height){
                     
                     let canvasElem=document.createElement('canvas');
@@ -25,17 +34,26 @@
         }
 
         function resize(_canvas){
-            _canvas.width=document.body.clientWidth;
-            _canvas.height=document.body.clientHeight;
+            c_w=_canvas.width=document.body.clientWidth;
+            c_h=_canvas.height=document.body.clientHeight;
         }
 
 
         function update(balls, ctx){
             let i=0;
-            
+            ctx.clearRect(0, 0, c_w, c_h);
             for(i=0;i<balls.length;i++){
+                if(balls[i].crashing_x()){
+                    balls[i].dx=(-balls[i].dx);
+                }
+                else if(balls[i].crashing_y()){
+                    balls[i].dy=(-balls[i].dy);
+                }
+                
                 balls[i].x+=balls[i].dx;
                 balls[i].y+=balls[i].dy;
+                balls[i].draw(ctx);
+                
                 balls[i].draw(ctx);
             }
 
@@ -60,10 +78,36 @@
             draw(ctx){
                 
                 ctx.strokeStyle=this.color;
+                ctx.fillStyle=this.color;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.r,0, 2*Math.PI );
-                ctx.stroke();
 
+               
+
+
+
+                //ctx.stroke();
+                ctx.shadowBlur = 6;
+                ctx.shadowOffsetX = 6;
+                ctx.shadowOffsetY = 6;
+                ctx.shadowColor = this.color;
+                
+                ctx.globalAlpha=0.2;
+                ctx.fill();
+                ctx.globalAlpha=1;
+
+            }
+            crashing_x(){
+                if(this.x<=this.r||this.x>=c_w-this.r){
+                    return true;
+                }
+                else return false;
+            }
+            crashing_y(){
+                if(this.y<=this.r||this.y>=c_h-this.r){
+                    return true;
+                }
+                else return false;
             }
 
 
@@ -75,18 +119,41 @@
 
 
 
+
+        function generateBall(){
+            let r=(Math.random()/2)*200+50;
+            let dx=(Math.random()-0.5)*20;
+            let dy=(Math.random()-0.5)*20;
+            balls.push(new Ball(c_w/2, c_h/2, r, "#"+Math.round(Math.random()*0xffffff).toString(16), dx, dy ));
+        }
+
+        function deleteBall(){
+            balls.pop();
+        }
+
+
+
+
         function App()
         {
             let cv=create("mycanvas", document.body, 1024, 768);
-            
+            let text=document.getElementById("balls");
+            document.addEventListener('keydown', function(event){
+                
+                if(event.keyCode==32) {generateBall();text.innerText="Number of Balls:"+balls.length.toString();}
+                else if(event.keyCode==8) {deleteBall();text.innerText="Number of Balls:"+balls.length.toString();}
+
+            })
+
+
+
             let ctx=cv.getContext('2d');
             resize(cv);
             
             
-            let balls=Array();
+            
 
-            balls.push(new Ball(cv.width/2, cv.height/2, 50, "green", 1, 0 ));
-            balls.push(new Ball(cv.width/3, cv.height/3, 20, "black", 0, 1 ));
+           
             
 
             (function repeatOften(){
@@ -104,5 +171,10 @@
 
 </head>
 <body onload="App()";>
+    <div id="balls">
+        Number of Balls:0
+    </div>
+
+
 </body>
 </html>
