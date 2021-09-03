@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Swipe</title>
+
+    <style>
+        body{
+            background-color:#3d3d3d;
+        }
+        #game{
+            border:2px solid black;
+            width:600px;
+            height:750px;
+            margin:auto;
+            }
+        canvas{
+            background-color:black;
+            width:600px;
+            height:700px;
+        }
+    
+    
+    
+    </style>
+
+    
+
+
+
+
+</head>
+<body>
+    <div id="game">
+        <canvas id="canvas" width=1200px; height=1400px;>
+
+        </canvas>
+    </div>
+    <script>
+     
+            let can=document.getElementById("canvas");
+            let ctx=can.getContext('2d');
+    
+            let balls=Array();
+            let bricks=Array();
+            let items=Array();
+        
+        
+        class Ball{
+                constructor(x, y){
+    
+                }
+    
+    
+            }
+    
+    
+            class Brick{
+                constructor(x, y, num){
+                    this.x=x;
+                    this.y=y;
+                    this.num=num;
+                }
+                draw(ctx){
+    
+                    ctx.strokeStyle="white";
+                    ctx.fillStyle="powderblue"
+                    ctx.beginPath();
+                    ctx.moveTo(200*(this.x)+0.5, 100*(this.y)+0.5);
+                    ctx.lineTo(200*(this.x)+0.5, 100*(this.y+1)+0.5);
+                    ctx.lineTo(200*(this.x+1)+0.5, 100*(this.y+1)+0.5);
+                    ctx.lineTo(200*(this.x+1)+0.5, 100*(this.y)+0.5);
+                    ctx.lineTo(200*(this.x)+0.5, 100*(this.y)+0.5);
+                    ctx.stroke();
+                    ctx.fill();
+
+                    ctx.font='50px sans'
+                    
+    
+                }
+    
+            }
+    
+        
+       
+        
+        </script>
+    
+</body>
+</html>
