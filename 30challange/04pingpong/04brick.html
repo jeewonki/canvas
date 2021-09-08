@@ -50,9 +50,18 @@
         
         class Ball{
                 constructor(x, y){
-    
+                    this.x=x;
+                    this.y=y;
                 }
-    
+
+                draw(ctx){
+                    ctx.strokeStyle="#acff33";
+                    ctx.fillStyle="#acff33";
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 20, 0, 2*Math.PI);
+                    ctx.fill();
+                    
+                }
     
             }
     
@@ -65,8 +74,9 @@
                 }
                 draw(ctx){
     
-                    ctx.strokeStyle="white";
-                    ctx.fillStyle="powderblue"
+                    ctx.strokeStyle="#acff33";
+                    ctx.fillStyle="#acff33";
+                    ctx.lineWidth=3;
                     ctx.beginPath();
                     ctx.moveTo(200*(this.x)+0.5, 100*(this.y)+0.5);
                     ctx.lineTo(200*(this.x)+0.5, 100*(this.y+1)+0.5);
@@ -74,13 +84,32 @@
                     ctx.lineTo(200*(this.x+1)+0.5, 100*(this.y)+0.5);
                     ctx.lineTo(200*(this.x)+0.5, 100*(this.y)+0.5);
                     ctx.stroke();
-                    ctx.fill();
+                    
 
-                    ctx.font='50px sans'
+                    ctx.font='50px sans';
+                    ctx.textAlign='center';
+                    ctx.fillText(this.num.toString(),200*(this.x+0.5)+0.5, 100*(this.y+0.5)+0.5);
                     
     
                 }
     
+            }
+
+
+
+
+
+
+
+
+
+
+
+            function nonFire(){
+
+            }
+            function Fire(){
+
             }
     
         
