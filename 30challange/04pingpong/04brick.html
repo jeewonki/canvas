@@ -57,6 +57,8 @@
                 constructor(x, y){
                     this.x=x;
                     this.y=y;
+                    this.dx=0;
+                    this.dy=0;
                 }
 
                 draw(ctx){
@@ -67,6 +69,24 @@
                     ctx.fill();
                     
                 }
+
+                move(ctx){
+
+
+
+
+
+
+
+
+
+                    
+                    if(isBouncingX)this.dx=-this.dx;
+                    else this.x+=this.dx;
+                    if(isBouncingY)this.dy=-this.dy; 
+                    this.y+=this.dy;
+                }
+
     
             }
     
