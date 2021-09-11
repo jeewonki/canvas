@@ -48,6 +48,7 @@
             let items=Array();
 
             can.addEventListener('mousemove',(e)=>{mousePoint(ctx, e.offsetX, e.offsetY)})
+            can.addEventListener('click', (e)=>{Fire(ctx,e.offsetX, e.offsetY)})
 
 
         
@@ -124,16 +125,28 @@
 
 
             function mousePoint(ctx, x, y){
-                console.log(x.toString()+y.toString())
-
+                ctx.strokeStyle="#acff33"
+                ctx.clearRect(0, 0, 1200, 1400);
+                Frame(ctx);
+                ctx.beginPath();
+                ctx.moveTo(580, 1200);
+                ctx.lineTo(2*x-20, 2*y);
+                ctx.moveTo(2*x+20, 2*y);
+                ctx.lineTo(620, 1200);
+                ctx.stroke();
+                ctx.fillStyle="#acff33";
+                ctx.beginPath();
+                ctx.arc(2*x, 2*y, 20, 0, 2*Math.PI);
+                ctx.fill();
             }
-            function Fire(){
+            function Fire(ctx, x, y){
+                console.log("fired!"+'  x= '+x.toString()+'  y=  ' +y.toString());
 
             }
 
 //////////////////////////////////////////////////////////main
     
-        balls.push(new Ball(600, 1200));
+        balls.push(new Ball(600, 1200));//600, 1200이 default
         bricks.push(new Brick(3, 3, 10));
         Frame(ctx);
         
