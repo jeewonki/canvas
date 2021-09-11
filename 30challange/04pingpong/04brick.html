@@ -72,19 +72,33 @@
 
                 move(ctx){
 
+                    let isBouncingX=false;
+                    let isBouncingY=false;
+                    let isUnderground=false;
+                    if(this.y>1180) isUnderground=true;
 
 
 
+                    ////////////////////////window bouncing
+                    if(this.x<20||this.x>1180)isBouncingX=true;
+                    if(this.y>20)isBouncingX=true;
 
-
-
-
+                    ////////////////////////brick bouncing
+                    let i=0;
+                    for(i=0;i<bricks.length;i++)
+                    {
+                        if(this.x>bricks[i].x*200+20)isBouncingX=true;
+                        if(this.x<(bricks[i].x-1)*200+20)isBouncingX=true;
+                    }
 
                     
-                    if(isBouncingX)this.dx=-this.dx;
-                    else this.x+=this.dx;
-                    if(isBouncingY)this.dy=-this.dy; 
-                    this.y+=this.dy;
+
+                    if(!isUnderground){
+                       if(isBouncingX)this.dx=-this.dx;
+                       else this.x+=this.dx;
+                       if(isBouncingY)this.dy=-this.dy; 
+                       else this.y+=this.dy;
+                    }
                 }
 
     
@@ -96,6 +110,7 @@
                     this.x=x;
                     this.y=y;
                     this.num=num;
+                   
                 }
                 draw(ctx){
     
@@ -116,6 +131,9 @@
                     ctx.fillText(this.num.toString(),200*(this.x+0.5)+0.5, 100*(this.y+0.5)+0.5);
                     
     
+                }
+                crash(ctx){
+
                 }
     
             }
@@ -160,14 +178,14 @@
                 ctx.fill();
             }
             function Fire(ctx, x, y){
-                console.log("fired!"+'  x= '+x.toString()+'  y=  ' +y.toString());
+                
 
             }
 
 //////////////////////////////////////////////////////////main
     
         balls.push(new Ball(600, 1200));//600, 1200이 default
-        bricks.push(new Brick(3, 3, 10));
+        bricks.push(new Brick(0, 1, 10));
         Frame(ctx);
         
         </script>
