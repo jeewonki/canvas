@@ -51,7 +51,7 @@
             can.addEventListener('click', (e)=>{Fire(ctx,e.offsetX, e.offsetY)})
 
 
-            window.addEventListener('keydown', (e)=>{balls[0].setDirection(30, -30); balls[0].move(ctx); console.log(balls[0]);})
+            window.addEventListener('keydown', (e)=>{ balls[0].move(ctx); })
 
 
         
@@ -117,7 +117,8 @@
                        else this.x+=this.dx;
                        if(isBouncingY)this.dy=-this.dy; 
                        else this.y+=this.dy;
-                       console.log(isBouncingX);
+                       console.log(isBouncingY);
+                       console.log(balls[0]);
                     }
                 }
 
@@ -207,6 +208,7 @@
         balls.push(new Ball(600, 1200));//600, 1200이 default
         bricks.push(new Brick(0, 1, 10));
         Frame(ctx);
+        balls[0].setDirection(30, -30);
         
         </script>
     
