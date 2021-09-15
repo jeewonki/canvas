@@ -51,6 +51,9 @@
             can.addEventListener('click', (e)=>{Fire(ctx,e.offsetX, e.offsetY)})
 
 
+            window.addEventListener('keydown', (e)=>{balls[0].setDirection(30, -30); balls[0].move(ctx); console.log(balls[0]);})
+
+
         
   /////////////////////////////classes      
         class Ball{
@@ -70,34 +73,51 @@
                     
                 }
 
+                setDirection(x, y)
+                {
+                    this.dx=x;
+                    this.dy=y;
+                }
+
+
+
+
                 move(ctx){
+                    
 
                     let isBouncingX=false;
                     let isBouncingY=false;
                     let isUnderground=false;
-                    if(this.y>1180) isUnderground=true;
+                    if(this.y>1220) isUnderground=true;
 
 
 
                     ////////////////////////window bouncing
                     if(this.x<20||this.x>1180)isBouncingX=true;
-                    if(this.y>20)isBouncingX=true;
-
+                    if(this.y<20)isBouncingY=true;
+                    
                     ////////////////////////brick bouncing
                     let i=0;
                     for(i=0;i<bricks.length;i++)
                     {
-                        if(this.x>bricks[i].x*200+20)isBouncingX=true;
-                        if(this.x<(bricks[i].x-1)*200+20)isBouncingX=true;
+                        if((this.x<(bricks[i].x+1)*200)&&(this.x>(bricks[i].x)*200))isBouncingX=true;
+                        if((this.y<(bricks[i].y+1)*100)&&(this.y>(bricks[i].y)*100))isBouncingY=true;
+                        
                     }
+                   
+                    
 
                     
 
                     if(!isUnderground){
-                       if(isBouncingX)this.dx=-this.dx;
+                       if(isBouncingX){
+                           this.dx=-this.dx;
+                           this.x+=this.dx;
+                       }
                        else this.x+=this.dx;
                        if(isBouncingY)this.dy=-this.dy; 
                        else this.y+=this.dy;
+                       console.log(isBouncingX);
                     }
                 }
 
